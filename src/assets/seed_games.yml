@@ -1,0 +1,196 @@
+development: &development
+  games:
+    - game_type: multiple_choice
+      name: "Pop Culture Trivia"
+      description: "Test your knowledge of pop culture, from movies to music!"
+      play_variant: :rapid_fire_penalty
+      image: https://images.unsplash.com/photo-1563891217861-7924b471afb3?auto=format&fit=crop&q=60&w=700&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG9wfGVufDB8fDB8fHww
+      game_rounds:
+        - params:
+            question: "Which actor played the iconic character Jack Dawson in the movie 'Titanic'?"
+            choices:
+              - "Leonardo DiCaprio"
+              - "Brad Pitt"
+              - "Tom Hanks"
+              - "Johnny Depp"
+            answer: 0
+          visual_variant: normal
+          play_seconds: 10
+
+        - params:
+            question: "This person is part of what band?"
+            object: "Freddie Mercury"
+            choices:
+              - "Queen"
+              - "U2"
+            answer: 0
+          visual_variant: this_or_that
+          play_seconds: 10
+        - params:
+            question: "Which of these pop artists are famously part of a conservatorship?"
+            object: "Freddie Mercury"
+            choices:
+              - "Beyonce"
+              - "Britney"
+              - "Kesha"
+              - "Carrie"
+            answer: 1
+          visual_variant: bullets
+          play_seconds: 10
+        - params:
+            question: "Which of these is a Elvis Presley lyric?"
+            choices:
+              - "I'm on a highway to hell."
+              - "Ballerina.
+                You must've seen her.
+                Dancing in the sand."
+              - "Let's rock, everybody, let's rock.
+                 Everybody in the whole cell block.
+                 Was dancing to the Jailhouse Rock.
+                 "
+              - "I saw him dancing there by the record machine."
+            answer: 2
+          visual_variant: cards
+          play_seconds: 10
+        - params:
+            question: "Which of these people is Madonna?"
+            choices:
+              - "https://media.allure.com/photos/63f51eac1ffc1787089386be/3:2/w_1928,h_1285,c_limit/madonna.jpg"
+              - "https://hips.hearstapps.com/hmg-prod/images/gettyimages-1229168700.jpg"
+              - "https://e00-marca.uecdn.es/assets/multimedia/imagenes/2022/12/23/16717519284008.jpg"
+              - "https://m.media-amazon.com/images/M/MV5BMTg0MDU1ODQwNF5BMl5BanBnXkFtZTcwOTc3MjQwNA@@._V1_FMjpg_UX1000_.jpg"
+            answer: 0
+          visual_variant: photos
+          play_seconds: 10
+
+    - game_type: type_your_answer
+      name: "Know yo' Bills"
+      description: "Who is on theses bills."
+      play_variant: :staggered
+      image: https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?auto=format&fit=crop&q=80&w=2828&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+      game_rounds:
+        - params:
+            question: "Who was this US president depicted on the 1$ bill?"
+            choices:
+              - "George Washington"
+              - "Washington"
+          image: "https://upload.wikimedia.org/wikipedia/commons/2/23/US_one_dollar_bill%2C_obverse%2C_series_2009.jpg"
+          visual_variant: normal
+          play_seconds: 30
+          retriable_count: 5
+        - params:
+            question: "Who is this famous monarch depicted on the 10 pounds bill?"
+            choices:
+              - "Queen Elizabeth II"
+              - "Queen Elizabeth"
+              - "Queen Elizabeth 2"
+              - "Elizabeth"
+              - "Elizabeth II"
+              - "Elizabeth 2"
+          image: "https://upload.wikimedia.org/wikipedia/en/5/54/Bank_of_England_%C2%A310_obverse.jpeg"
+          visual_variant: normal
+          play_seconds: 30
+          retriable_count: 5
+
+
+    - game_type: multiple_choice
+      name: "Science Whiz Quiz"
+      description: "Put on your lab coat and answer science-related questions."
+      play_variant: :rapid_fire_penalty
+      image: https://images.unsplash.com/photo-1564325724739-bae0bd08762c?auto=format&fit=crop&q=80&w=2970&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+      game_rounds:
+        - params:
+            question: "What is the chemical symbol for gold?"
+            choices:
+              - "Go"
+              - "Au"
+              - "Ag"
+              - "Ge"
+            answer: 1
+          visual_variant: normal
+          play_seconds: 10
+
+        - params:
+            question: "Which gas do plants absorb from the atmosphere during photosynthesis?"
+            choices:
+              - "Oxygen"
+              - "Carbon dioxide"
+              - "Nitrogen"
+              - "Hydrogen"
+            answer: 1
+          visual_variant: normal
+          play_seconds: 10
+
+    - game_type: multiple_choice
+      name: "Geography Explorer"
+      description: "Test your knowledge of world geography."
+      play_variant: :rapid_fire
+      image: https://images.unsplash.com/photo-1589519160142-7d1a51b43eaf?auto=format&fit=crop&q=80&w=2971&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+      game_rounds:
+        - params:
+            question: "Which river is the longest in the world?"
+            choices:
+              - "Amazon"
+              - "Nile"
+              - "Mississippi"
+              - "Yangtze"
+            answer: 1
+          visual_variant: normal
+          play_seconds: 10
+
+        - params:
+            question: "What is the capital of Japan?"
+            choices:
+              - "Kyoto"
+              - "Tokyo"
+              - "Osaka"
+              - "Seoul"
+            answer: 1
+          visual_variant: normal
+          play_seconds: 10
+
+    - game_type: multiple_choice
+      name: "Foodie Challenge"
+      description: "Get ready to answer questions about cuisine."
+      play_variant: :rapid_fire_penalty
+      image: https://images.unsplash.com/photo-1590299275619-8ab3db954d61?auto=format&fit=crop&q=80&w=3087&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+      game_rounds:
+        - params:
+            question: "What is the main ingredient in traditional Italian pasta Carbonara?"
+            choices:
+              - "Tomato sauce"
+              - "Alfredo sauce"
+              - "Eggs and bacon"
+              - "Pesto"
+            answer: 2
+          visual_variant: normal
+          play_seconds: 10
+        - params:
+            question: "Which country is famous for its spicy cuisine, including dishes like Pad Thai and Green Curry?"
+            choices:
+              - "Mexico"
+              - "India"
+              - "Thailand"
+              - "Greece"
+            answer: 2
+          visual_variant: normal
+          play_seconds: 10
+    - game_type: connect_the_topics
+      name: "Literary Connections"
+      description: "Connect famous authors with their well-known works."
+      play_variant: :staggered
+      image: https://images.unsplash.com/photo-1532543307581-8b01a7ff954f?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+      game_rounds:
+        - params:
+            question: "Connect the authors with their works."
+            pairs:
+              - ["J.K. Rowling", "Harry Potter"]
+              - ["George Orwell", "1984"]
+              - ["J.R.R. Tolkien", "The Lord of the Rings"]
+              - ["F. Scott Fitzgerald", "The Great Gatsby"]
+              - ["Harper Lee", "To Kill a Mockingbird"]
+          visual_variant: normal
+          play_seconds: 10000
+          retriable_count: 0
+
+production: *development
