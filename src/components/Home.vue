@@ -21,7 +21,7 @@ const uploadTrigger = () => {
   fileUpload.value.click();
 }
 
-const games = ref<GameT[]>(JSON.parse(localStorage.getItem('games')));
+const games = ref<GameT[]>(JSON.parse(localStorage.getItem('games')) || []);
 const upload = (ev) => {
   let files = ev.target.files;
   let reader = new FileReader();
