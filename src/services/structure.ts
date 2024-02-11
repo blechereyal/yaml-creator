@@ -42,7 +42,6 @@ export type GameRoundParamsT = {
     question: string,
     answer?: string,
     object?: string,
-    image?: string,
 };
 
 export type GameRoundT = {
@@ -50,6 +49,7 @@ export type GameRoundT = {
     playSeconds: Number | null,
     params: GameRoundParamsT,
     retriableCount: number | null,
+    image?: string | null,
 }
 
 export type GameT = {

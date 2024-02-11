@@ -6,7 +6,7 @@
           <Disclosure as="div" v-for="(game, idx) in props.games" class="pt-6" v-slot="{ open }">
             <dt>
               <DisclosureButton class="flex w-full items-start justify-between text-left text-gray-900">
-                <span class="text-base font-semibold leading-7">Game #{{ idx }}</span>
+                <span class="text-base font-semibold leading-7">Game #{{ idx }} - {{ game.name }}</span>
                 <span class="ml-6 flex h-7 items-center">
                   <PlusSmallIcon v-if="!open" class="h-6 w-6" aria-hidden="true" />
                   <MinusSmallIcon v-else class="h-6 w-6" aria-hidden="true" />
