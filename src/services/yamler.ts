@@ -31,10 +31,10 @@ export const dumpGames = (games: GameT[]) => {
 }
 
 export const loadGames = (yaml: string) : GameT[] => {
-    let loadedGames = load(yaml).development;
+    let loadedGames = load(yaml);
     console.log(loadedGames);
     let games: GameT[] = [];
-    loadedGames.games.forEach((element) => {
+    loadedGames.forEach((element) => {
         let game: GameT = {
             name: element.name,
             description: element.description,

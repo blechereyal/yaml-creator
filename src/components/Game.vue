@@ -6,14 +6,11 @@
     <Select v-model="game.gameType" :options="gameTypes" :label="'Game Type'" />
     <Select v-model="game.playVariant" :options="playVariants" :label="'Play Variant'" />
     <AppBtn label="Add new game round" @click="newRound" />
-          <GameRound class="transition ease-in duration-100" v-for="(gameRound, idx) in game.gameRounds" :key="idx" v-model="game.gameRounds[idx]"
-        :visualVariants="visualVariants" :id="idx" :gameType="game.gameType" v-if="visualVariants" 
-        @duplicate-round="duplicateRound(gameRound)"
-        @moveUp="moveUp(idx)"
-        @moveDown="moveDown(idx)"
-                >
-      </GameRound>
-      </div>
+    <GameRound class="transition ease-in duration-100" v-for="(gameRound, idx) in game.gameRounds" :key="idx"
+      v-model="game.gameRounds[idx]" :visualVariants="visualVariants" :id="idx" :gameType="game.gameType"
+      v-if="visualVariants" @duplicate-round="duplicateRound(gameRound)" @moveUp="moveUp(idx)" @moveDown="moveDown(idx)" @delete-round="deleteRound(idx)">
+    </GameRound>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -40,13 +37,13 @@ const visualVariants = computed(() => {
 });
 
 const duplicateRound = (gameRound: GameRoundT) => {
-  game.value?.gameRounds.push(Object.assign({}, gameRound));
+  game.value?.gameRounds.push(JSON.parse(JSON.stringify(gameRound)));
 }
 
 
 const moveDown = (idx: number) => {
   if (game.value.gameRounds.length <= idx + 1) {
-    return ;
+    return;
   }
 
   let tmp = game.value.gameRounds[idx];
@@ -56,7 +53,7 @@ const moveDown = (idx: number) => {
 
 const moveUp = (idx: number) => {
   if (idx == 0) {
-    return ;
+    return;
   }
 
   let tmp = game.value.gameRounds[idx];
