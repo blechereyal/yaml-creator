@@ -1,6 +1,15 @@
 <template>
-    <div class="p-4 bg-red-100 rounded-xl flex flex-col gap-1">
-        <h1 class="font-bold mb-2">GameRound #{{ props.id }} - <AppBtn label="Duplicate round" @click="$emit('duplicateRound')"/> - <AppBtn label="Move Up" @click="$emit('moveUp')"/> - <AppBtn label="Move Down" @click="$emit('moveDown')"/>- <AppBtn label="Delete Round" @click="$emit('deleteRound')"/></h1> 
+     <Disclosure as="div" class="p-4 bg-red-100 rounded-xl flex flex-col gap-1" v-slot="{ open }" :default-open="true">
+        <dt>
+            <DisclosureButton class="flex w-full items-start justify-between text-left text-gray-900">
+                <h1 class="font-bold mb-2">GameRound #{{ props.id }} - {{ gameRound?.params.question }} - <AppBtn label="Duplicate round" @click.stop="$emit('duplicateRound')"/> - <AppBtn label="Move Up" @click.stop="$emit('moveUp')"/> - <AppBtn label="Move Down" @click.stop="$emit('moveDown')"/>- <AppBtn label="Delete Round" @click.stop="$emit('deleteRound')"/></h1> 
+                <span class="ml-6 flex h-7 items-center">
+                  <PlusSmallIcon v-if="!open" class="h-6 w-6" aria-hidden="true" />
+                  <MinusSmallIcon v-else class="h-6 w-6" aria-hidden="true" />
+                </span>
+            </DisclosureButton>
+        </dt>
+        <DisclosurePanel as="dd" class="mt-2 pr-12">
         <div class="flex gap-1 w-full">
             <Select v-model="gameRound.visualVariant" :options="props.visualVariants" label="Visual Variant"></Select>
             <Input class="max-w-24" v-model="gameRound.playSeconds" label="Play seconds" />
@@ -40,10 +49,14 @@
                 </div>
             </div>
         </div>
-    </div>
+        </DisclosurePanel>
+    </Disclosure>
 </template>
   
 <script setup lang="ts">
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
+import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/vue/24/outline'
+
 import { computed, defineModel } from 'vue';
 import { GameRoundT, gameTypeT, visualVariantT } from '../services/structure';
 import Select from './Select.vue';
