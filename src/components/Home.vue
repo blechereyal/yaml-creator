@@ -14,7 +14,7 @@ import { GameT, gameTypes } from '../services/structure';
 import { dumpGames, loadGames } from '../services/yamler';
 import AppBtn from './core/AppBtn.vue';
 import GameAccordion from './core/GameAccordion.vue';
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const fileUpload = ref(null);
 const uploadTrigger = () => {
@@ -22,6 +22,20 @@ const uploadTrigger = () => {
 }
 
 const games = ref<GameT[]>(JSON.parse(localStorage.getItem('games')) || []);
+let interval : number;
+onMounted(() => {
+  interval = setInterval(() => {
+    console.info("Saving data...");
+    localStorage.setItem('games', JSON.stringify(games.value));
+  }, 2000)
+})
+
+onBeforeUnmount(() => {
+  console.info("Clearing autosave loop");
+  localStorage.setItem('games', JSON.stringify(games.value));
+  clearInterval(interval);
+})
+
 const upload = (ev) => {
   let files = ev.target.files;
   let reader = new FileReader();
@@ -34,6 +48,7 @@ const upload = (ev) => {
     reader.readAsText(files[0]);
   }
 };
+
 const dumpAll = () => {
   localStorage.setItem('games', JSON.stringify(games.value));
   let yml = dumpGames(games.value);

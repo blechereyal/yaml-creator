@@ -6,8 +6,13 @@
     <Select v-model="game.gameType" :options="gameTypes" :label="'Game Type'" />
     <Select v-model="game.playVariant" :options="playVariants" :label="'Play Variant'" />
     <AppBtn label="Add new game round" @click="newRound" />
-    <GameRound v-for="(_gameRound, idx) in game.gameRounds" :key="idx" v-model="game.gameRounds[idx]"
-      :visualVariants="visualVariants" :id="idx" :gameType="game.gameType" v-if="visualVariants"></GameRound>
+    <GameRound class="transition ease-in duration-100" v-for="(gameRound, idx) in game.gameRounds" :key="idx" v-model="game.gameRounds[idx]"
+      :visualVariants="visualVariants" :id="idx" :gameType="game.gameType" v-if="visualVariants" 
+      @duplicate-round="duplicateRound(gameRound)"
+      @moveUp="moveUp(idx)"
+      @moveDown="moveDown(idx)"
+      >
+    </GameRound>
   </div>
 </template>
 
@@ -17,7 +22,7 @@ import Input from './Input.vue';
 import GameRound from './GameRound.vue';
 import AppBtn from './core/AppBtn.vue';
 import { defineModel, computed } from 'vue';
-import { gameTypes, playVariants, GameT, newParams } from '../services/structure';
+import { gameTypes, playVariants, GameT, newParams, GameRoundT } from '../services/structure';
 import { loadGames } from '../services/yamler';
 
 const game = defineModel<GameT>();
@@ -33,5 +38,30 @@ const newRound = () => {
 const visualVariants = computed(() => {
   return game?.value?.gameType?.visual_variants;
 });
+
+const duplicateRound = (gameRound: GameRoundT) => {
+  game.value?.gameRounds.push(Object.assign({}, gameRound));
+}
+
+
+const moveDown = (idx: number) => {
+  if (game.value.gameRounds.length <= idx + 1) {
+    return ;
+  }
+
+  let tmp = game.value.gameRounds[idx];
+  game.value.gameRounds[idx] = game.value.gameRounds[idx + 1];
+  game.value.gameRounds[idx + 1] = tmp;
+}
+
+const moveUp = (idx: number) => {
+  if (idx == 0) {
+    return ;
+  }
+
+  let tmp = game.value.gameRounds[idx];
+  game.value.gameRounds[idx] = game.value.gameRounds[idx - 1];
+  game.value.gameRounds[idx - 1] = tmp;
+}
 
 </script>
