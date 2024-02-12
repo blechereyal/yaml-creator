@@ -23,7 +23,7 @@ const uploadTrigger = () => {
     }
 }
 
-const games = ref<GameT[]>(JSON.parse(localStorage.getItem('games') || '') || []);
+const games = ref<GameT[]>(JSON.parse(localStorage.getItem('games') || '[]') || []);
 let interval : number;
 onMounted(() => {
   interval = setInterval(() => {
