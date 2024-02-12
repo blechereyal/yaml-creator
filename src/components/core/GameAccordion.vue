@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/vue/24/outline'
-import { GameT, gameTypes } from '../../services/structure';
+import { GameT } from '../../services/structure';
 import Game from '../Game.vue';
 import AppBtn from './AppBtn.vue';
 

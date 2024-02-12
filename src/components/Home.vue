@@ -16,12 +16,14 @@ import AppBtn from './core/AppBtn.vue';
 import GameAccordion from './core/GameAccordion.vue';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-const fileUpload = ref(null);
+const fileUpload = ref<HTMLInputElement | null>(null);
 const uploadTrigger = () => {
-  fileUpload.value.click();
+    if (fileUpload.value) {
+      fileUpload.value.click();
+    }
 }
 
-const games = ref<GameT[]>(JSON.parse(localStorage.getItem('games')) || []);
+const games = ref<GameT[]>(JSON.parse(localStorage.getItem('games') || '') || []);
 let interval : number;
 onMounted(() => {
   interval = setInterval(() => {
@@ -36,15 +38,17 @@ onBeforeUnmount(() => {
   clearInterval(interval);
 })
 
-const upload = (ev) => {
-  let files = ev.target.files;
+const upload = (ev: Event) => {
+  let files = (ev.target as HTMLInputElement).files;
   let reader = new FileReader();
   reader.onload = () => {
-    games.value = loadGames(reader.result);
+    if (reader.result !== null) {
+      games.value = loadGames(reader.result as string);
+    }
     localStorage.setItem('games', JSON.stringify(games.value));
   };
 
-  if(files[0]) {
+  if (files && files[0]) {
     reader.readAsText(files[0]);
   }
 };

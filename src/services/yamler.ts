@@ -1,9 +1,9 @@
 import { GameT, gameTypeT, gameTypes, playVariantT, playVariants, visualVariantT } from './structure';
 import { dump, load } from 'js-yaml';
 
-const findGameTypeByName = (name: string) : gameTypeT => gameTypes.find((value) => value.name === name)
-const findPlayVariantByName = (name: string) : playVariantT => playVariants.find((value) => value.name === name.replace(':', ''))
-const findVisualVariantByName = (gameType: gameTypeT, name: string) : visualVariantT => gameType.visual_variants.find((value) => value.name === name);
+const findGameTypeByName = (name: string) : gameTypeT => gameTypes.find((value) => value.name === name)!
+const findPlayVariantByName = (name: string) : playVariantT => playVariants.find((value) => value.name === name.replace(':', ''))!
+const findVisualVariantByName = (gameType: gameTypeT, name: string) : visualVariantT => gameType.visual_variants.find((value) => value.name === name)!;
 export const dumpGames = (games: GameT[]) => {
     return dump(games.map((game) => {
         return {
@@ -31,10 +31,10 @@ export const dumpGames = (games: GameT[]) => {
 }
 
 export const loadGames = (yaml: string) : GameT[] => {
-    let loadedGames = load(yaml);
+    let loadedGames: any = load(yaml);
     console.log(loadedGames);
     let games: GameT[] = [];
-    loadedGames.forEach((element) => {
+    loadedGames.forEach((element: any) => {
         let game: GameT = {
             name: element.name,
             description: element.description,
@@ -44,7 +44,7 @@ export const loadGames = (yaml: string) : GameT[] => {
             gameRounds: []
         };
 
-        element.game_rounds.forEach((gameRound) => {
+        element.game_rounds.forEach((gameRound: any) => {
             game.gameRounds?.push({
                 params: {
                     choices: gameRound.params.choices,
@@ -55,7 +55,7 @@ export const loadGames = (yaml: string) : GameT[] => {
                 },
                 image: gameRound.image,
                 retriableCount: gameRound.retriable_count,
-                visualVariant: findVisualVariantByName(game.gameType, gameRound.visual_variant),
+                visualVariant: findVisualVariantByName(game.gameType!, gameRound.visual_variant),
                 playSeconds: gameRound.play_seconds
             });
         });

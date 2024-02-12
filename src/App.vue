@@ -17,7 +17,8 @@
               <img class="hidden h-8 w-auto lg:block" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
             </div>
             <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-              <router-link v-for="item in navigation" :to="item.path" :class="[item.current ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700', 'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium']">
+              <!-- :class="[item.current ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700', 'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium']" -->
+              <router-link v-for="item in navigation" :to="item.path">
                 {{ item.name }}
               </router-link>
             </div>
@@ -61,7 +62,7 @@
 
       <DisclosurePanel class="sm:hidden">
         <div class="space-y-1 pb-3 pt-2">
-          <DisclosureButton v-for="item in navigation" :key="item.name" as="a" :href="item.href" :class="[item.current ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800', 'block border-l-4 py-2 pl-3 pr-4 text-base font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</DisclosureButton>
+          <DisclosureButton v-for="item in navigation" :key="item.name" as="a">{{ item.name }}</DisclosureButton>
         </div>
         <div class="border-t border-gray-200 pb-3 pt-4">
           <div class="flex items-center px-4">
