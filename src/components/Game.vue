@@ -6,14 +6,14 @@
     <Select v-model="game.gameType" :options="gameTypes" :label="'Game Type'" />
     <Select v-model="game.playVariant" :options="playVariants" :label="'Play Variant'" />
     <AppBtn label="Add new game round" @click="newRound" />
-    <GameRound class="transition ease-in duration-100" v-for="(gameRound, idx) in game.gameRounds" :key="idx" v-model="game.gameRounds[idx]"
-      :visualVariants="visualVariants" :id="idx" :gameType="game.gameType" v-if="visualVariants" 
-      @duplicate-round="duplicateRound(gameRound)"
-      @moveUp="moveUp(idx)"
-      @moveDown="moveDown(idx)"
-      >
-    </GameRound>
-  </div>
+          <GameRound class="transition ease-in duration-100" v-for="(gameRound, idx) in game.gameRounds" :key="idx" v-model="game.gameRounds[idx]"
+        :visualVariants="visualVariants" :id="idx" :gameType="game.gameType" v-if="visualVariants" 
+        @duplicate-round="duplicateRound(gameRound)"
+        @moveUp="moveUp(idx)"
+        @moveDown="moveDown(idx)"
+                >
+      </GameRound>
+      </div>
 </template>
 
 <script setup lang="ts">
@@ -62,6 +62,10 @@ const moveUp = (idx: number) => {
   let tmp = game.value.gameRounds[idx];
   game.value.gameRounds[idx] = game.value.gameRounds[idx - 1];
   game.value.gameRounds[idx - 1] = tmp;
+}
+
+const deleteRound = (idx: number) => {
+  game.value.gameRounds?.splice(idx, 1);
 }
 
 </script>

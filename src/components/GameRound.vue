@@ -1,6 +1,6 @@
 <template>
     <div class="p-4 bg-red-100 rounded-xl flex flex-col gap-1">
-        <h1 class="font-bold mb-2">GameRound #{{ props.id }} - <AppBtn label="Duplicate round" @click="$emit('duplicateRound')"/> - <AppBtn label="Move Up" @click="$emit('moveUp')"/> - <AppBtn label="Move Down" @click="$emit('moveDown')"/></h1> 
+        <h1 class="font-bold mb-2">GameRound #{{ props.id }} - <AppBtn label="Duplicate round" @click="$emit('duplicateRound')"/> - <AppBtn label="Move Up" @click="$emit('moveUp')"/> - <AppBtn label="Move Down" @click="$emit('moveDown')"/>- <AppBtn label="Delete Round" @click="$emit('deleteRound')"/></h1> 
         <div class="flex gap-1 w-full">
             <Select v-model="gameRound.visualVariant" :options="props.visualVariants" label="Visual Variant"></Select>
             <Input class="max-w-24" v-model="gameRound.playSeconds" label="Play seconds" />
@@ -50,7 +50,7 @@ import Select from './Select.vue';
 import Input from './Input.vue';
 import AppBtn from './core/AppBtn.vue';
 import { XCircleIcon, CheckCircleIcon } from "@heroicons/vue/24/outline"; 
-defineEmits(['duplicateRound', 'moveUp', 'moveDown'])
+defineEmits(['duplicateRound', 'moveUp', 'moveDown', 'deleteRound']);
 
 const gameRound = defineModel<GameRoundT>();
 
