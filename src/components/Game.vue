@@ -7,8 +7,8 @@
     <Select v-model="/* @ts-ignore */ game!.playVariant" :options="playVariants" :label="'Play Variant'" />
     <AppBtn label="Add new game round" @click="newRound" />
     <GameRound class="transition ease-in duration-100" v-for="(gameRound, idx) in game?.gameRounds" :key="idx"
-      v-model="game.gameRounds![idx]" :visualVariants="visualVariants" :id="idx" :gameType="game.gameType!"
-      v-if="visualVariants && game" @duplicate-round="duplicateRound(gameRound)" @moveUp="moveUp(idx)" @moveDown="moveDown(idx)" @delete-round="deleteRound(idx)">
+      v-model="game.gameRounds![idx]" :id="idx"
+      v-if="game" @duplicate-round="duplicateRound(gameRound)" @moveUp="moveUp(idx)" @moveDown="moveDown(idx)" @delete-round="deleteRound(idx)">
     </GameRound>
   </div>
 </template>
@@ -18,23 +18,20 @@ import Select from './Select.vue';
 import Input from './Input.vue';
 import GameRound from './GameRound.vue';
 import AppBtn from './core/AppBtn.vue';
-import { defineModel, computed } from 'vue';
+import { defineModel } from 'vue';
 import { gameTypes, playVariants, GameT, newParams, GameRoundT } from '../services/structure';
 
 const game = defineModel<GameT>();
 
 const newRound = () => {
   game.value!.gameRounds!.push({
-    visualVariant: visualVariants.value![0],
+    gameType: null,
+    visualVariant: null,
     playSeconds: 0,
-    params: newParams(game.value!.gameType!.name),
+    params: newParams(gameTypes[0].name),
     retriableCount: 0
   });
 };
-
-const visualVariants = computed(() => {
-  return game?.value?.gameType?.visual_variants;
-});
 
 const duplicateRound = (gameRound: GameRoundT) => {
   game.value?.gameRounds!.push(JSON.parse(JSON.stringify(gameRound)));

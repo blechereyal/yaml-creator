@@ -1,4 +1,8 @@
 <template>
+    <div class="flex gap-2">
+      <p class="font-bold">Actions</p>
+      <AppBtn @click="addGame()" label="Add game" />
+    </div>
     <div class="mt-4">
       <div class="divide-y divide-gray-900/10">
         <h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900">Games</h2>
@@ -37,6 +41,16 @@ const deleteGame = (idx: number) => {
   props.games.splice(idx, 1);
 }
 
+
+const addGame = () => {
+  props.games.push({
+    name: '',
+    description: '',
+    playVariant: null,
+    image: null,
+    gameRounds: [],
+  })
+}
 const moveDown = (idx: number) => {
   if (props.games.length <= idx + 1) {
     return ;

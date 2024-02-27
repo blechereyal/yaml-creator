@@ -11,7 +11,8 @@
         </dt>
         <DisclosurePanel as="dd" class="mt-2 pr-12">
         <div class="flex gap-1 w-full">
-            <Select v-model="/* @ts-ignore */gameRound!.visualVariant" :options="props.visualVariants" label="Visual Variant"></Select>
+            <Select v-model="/* @ts-ignore */gameRound!.gameType" :options="gameTypes" label="Game Type"></Select>
+            <Select v-model="/* @ts-ignore */gameRound!.visualVariant" :options="visualVariants" label="Visual Variant" v-if="gameRound?.gameType && visualVariants"></Select>
             <Input class="max-w-24" v-model="gameRound!.playSeconds" label="Play seconds" />
             <Input class="flex-grow" v-model="gameRound!.params.question" label="Question" />
         </div>
@@ -58,7 +59,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/vue/24/outline'
 
 import { computed, defineModel } from 'vue';
-import { GameRoundT, gameTypeT, visualVariantT } from '../services/structure';
+import { GameRoundT, gameTypes } from '../services/structure';
 import Select from './Select.vue';
 import Input from './Input.vue';
 import AppBtn from './core/AppBtn.vue';
@@ -68,13 +69,11 @@ defineEmits(['duplicateRound', 'moveUp', 'moveDown', 'deleteRound']);
 const gameRound = defineModel<GameRoundT>();
 
 const props = defineProps<{
-    visualVariants: visualVariantT[],
     id: number,
-    gameType: gameTypeT,
 }>();
 
-const usePairs = computed(() => props.gameType.name === 'connect_the_topics');
-
+const usePairs = computed(() => gameRound.value?.gameType?.name === 'connect_the_topics');
+const visualVariants = computed(() => gameRound.value?.gameType?.visual_variants);
 const addPair = () => {
     console.log('adding pair');
     if (!gameRound.value!.params.pairs) {

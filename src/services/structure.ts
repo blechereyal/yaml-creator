@@ -45,6 +45,7 @@ export type GameRoundParamsT = {
 };
 
 export type GameRoundT = {
+    gameType: gameTypeT | null;
     visualVariant: visualVariantT | null,
     playSeconds: Number | null,
     params: GameRoundParamsT,
@@ -58,8 +59,13 @@ export type GameT = {
     playVariant: playVariantT | null, 
     image: string | null,
     gameRounds: GameRoundT[] | null
-    gameType: gameTypeT | null
 }
+
+export type TournamentT = {
+    games: GameT[],
+    startDate?: Date
+}
+
 
 export const newParams = (gameType: string) : GameRoundParamsT => {
     if (gameType === 'multiple_choice' || gameType === 'type_your_answer') {
