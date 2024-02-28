@@ -58,7 +58,7 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/vue/24/outline'
 
-import { computed, defineModel, watch, watchEffect } from 'vue';
+import { computed, defineModel, watch } from 'vue';
 import { GameRoundT, gameTypes } from '../services/structure';
 import Select from './Select.vue';
 import Input from './Input.vue';
