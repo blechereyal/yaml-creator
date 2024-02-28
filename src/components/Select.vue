@@ -51,10 +51,11 @@ const props = defineProps<{
 const model = defineModel<Option>();
 const selected = ref<Option>(model.value || props.options[0])
 watch(selected, () => {
-  console.log(model.value);
-  
-  console.log(selected.value);
   model.value = selected.value;
+});
+
+watch(model, () => {
+  selected.value = model.value || props.options[0];
 });
 
 model.value = selected.value;

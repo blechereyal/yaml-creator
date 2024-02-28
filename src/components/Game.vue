@@ -3,7 +3,6 @@
     <Input v-model="game!.name" :label="'Name'" />
     <Input v-model="game!.description" :label="'Description'" />
     <Input v-model="game!.image" :label="'Image'" />
-    <Select v-model="/* @ts-ignore */ game!.gameType" :options="gameTypes" :label="'Game Type'" />
     <Select v-model="/* @ts-ignore */ game!.playVariant" :options="playVariants" :label="'Play Variant'" />
     <AppBtn label="Add new game round" @click="newRound" />
     <GameRound class="transition ease-in duration-100" v-for="(gameRound, idx) in game?.gameRounds" :key="idx"
@@ -19,7 +18,7 @@ import Input from './Input.vue';
 import GameRound from './GameRound.vue';
 import AppBtn from './core/AppBtn.vue';
 import { defineModel } from 'vue';
-import { gameTypes, playVariants, GameT, newParams, GameRoundT } from '../services/structure';
+import { playVariants, GameT, newParams, GameRoundT } from '../services/structure';
 
 const game = defineModel<GameT>();
 
@@ -28,7 +27,7 @@ const newRound = () => {
     gameType: null,
     visualVariant: null,
     playSeconds: 0,
-    params: newParams(gameTypes[0].name),
+    params: newParams(),
     retriableCount: 0
   });
 };

@@ -63,21 +63,15 @@ export type GameT = {
 
 export type TournamentT = {
     games: GameT[],
-    startDate?: Date
+    startDate?: Date,
+    name: string
 }
 
 
-export const newParams = (gameType: string) : GameRoundParamsT => {
-    if (gameType === 'multiple_choice' || gameType === 'type_your_answer') {
-        return {
-            choices: [],
-            question: '',
-            answer: '',
-        }
-    } else {
-        return {
-            question: '',
-            pairs: [],
-        }
+export const newParams = () : GameRoundParamsT => {
+    return {
+        choices: [],
+        question: '',
+        answer: '',
     }
 }
