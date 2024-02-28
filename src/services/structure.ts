@@ -3,7 +3,7 @@ export type visualVariantT = {
     id: Number
 }
 export type gameTypeT = {
-    name: 'multiple_choice' | 'connect_the_topics' | 'type_your_answer',
+    name: 'multiple_choice' | 'connect_the_topics' | 'type_your_answer' | 'answer_in_sequence',
     id: Number,
     visual_variants: visualVariantT[],
 };
@@ -26,6 +26,12 @@ export const gameTypes: gameTypeT[] = [
             { name: 'normal', id: 1 }
         ]
         , id: 3
+    },
+    {
+        name: 'answer_in_sequence', visual_variants: [
+            { name: 'normal', id: 1 }
+        ]
+        , id: 4
     },
 ];
 

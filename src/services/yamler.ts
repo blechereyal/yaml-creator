@@ -7,6 +7,7 @@ const findVisualVariantByName = (gameType: gameTypeT, name: string) : visualVari
 export const dumpTournaments = (tournaments: TournamentT[]) => {
     return dump(tournaments.map((tournament) => {
         return {
+            name: tournament.name,
             games: tournament.games.map((game: GameT) => {
                 return {
                     name: game.name,
@@ -39,7 +40,7 @@ export const loadTournaments = (yaml: string) : TournamentT[] => {
     let loadedtournaments: any = load(yaml);
     let tournaments: TournamentT[] = [];
     loadedtournaments.forEach((tournamentExt: any) => {
-        let tournamentNew: TournamentT = { games: [] } 
+        let tournamentNew: TournamentT = { games: [], name: tournamentExt.name } 
         let games = tournamentExt.games.map((gameExt: any) => {
             let game: GameT = {
                 name: gameExt.name,

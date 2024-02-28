@@ -28,6 +28,7 @@ const uploadTrigger = () => {
 const tournaments = ref<TournamentT[]>(JSON.parse(localStorage.getItem('tournaments') || '[]') || []);
 const addTournament = () => {
   tournaments.value.push({
+    name: `New Tournament ${tournaments.value.length + 1}`,
     games: []
   })
 }
