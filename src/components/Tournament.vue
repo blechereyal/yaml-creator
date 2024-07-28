@@ -31,6 +31,11 @@ import GameAccordion from './core/GameAccordion.vue';
 import AppBtn from './core/AppBtn.vue';
 
 const tournament = defineModel<TournamentT>();
+
+if (!tournament!.value!.prizes) {
+  tournament!.value!.prizes = [0,0,0,0,0,0,0,0,0,0]
+}
+
 const newPrize = () => {
   tournament.value!.prizes!.push(0);
 };
