@@ -29,7 +29,10 @@ const tournaments = ref<TournamentT[]>(JSON.parse(localStorage.getItem('tourname
 const addTournament = () => {
   tournaments.value.push({
     name: `New Tournament ${tournaments.value.length + 1}`,
-    games: []
+    games: [],
+    prizes: [0,0,0,0,0,0,0,0,0,0],
+    ticket_winners: 0,
+    per_game_ticket_winners: 0
   })
 }
 let interval : number;

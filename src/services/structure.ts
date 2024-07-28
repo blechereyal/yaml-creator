@@ -68,9 +68,12 @@ export type GameT = {
 }
 
 export type TournamentT = {
+    per_game_ticket_winners: number;
+    ticket_winners: number;
     games: GameT[],
-    startDate?: Date,
-    name: string
+    start_date?: Date,
+    name: string,
+    prizes: Number[]
 }
 
 
