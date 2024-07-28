@@ -9,7 +9,7 @@
                <AppBtn label="New Prize" @click="newPrize" />
 
            </div>
-           <div class="flex flex-row gap-4 w-full" v-for="(prize, idx) in tournament?.prizes" v-if="tournament?.prizes">
+           <div class="flex flex-row gap-4 w-full" v-for="(_prize, idx) in tournament?.prizes" v-if="tournament?.prizes">
                 <div class="flex gap-2 w-full items-center justify-center">
                     <p>#{{ idx+1 }}</p><Input type="number" v-model="tournament!.prizes[idx]"/><AppBtn label="Delete Prize" @click="deletePrize" />
                 </div>
