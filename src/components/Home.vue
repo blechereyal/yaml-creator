@@ -31,8 +31,10 @@ const addTournament = () => {
     name: `New Tournament ${tournaments.value.length + 1}`,
     games: [],
     prizes: [0,0,0,0,0,0,0,0,0,0],
-    ticket_winners: 0,
-    per_game_ticket_winners: 0
+    ticket_winners: '1-10',
+    per_game_ticket_winners: '1-15',
+    invite_winners: '1-10',
+    per_game_invite_winners: '1-15'
   })
 }
 let interval : number;
