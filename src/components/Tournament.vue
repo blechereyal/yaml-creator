@@ -14,10 +14,14 @@
                     <p>#{{ idx+1 }}</p><Input type="number" v-model="tournament!.prizes[idx]"/><AppBtn label="Delete Prize" @click="deletePrize" />
                 </div>
             </div>
-            <h2>Tournament ticket winners count</h2>
-            <Input v-model="tournament!.ticket_winners" type="number"/>
-            <h2>Per game ticket winners</h2>
-            <Input v-model="tournament!.per_game_ticket_winners" type="number"/>
+            <h2>Tournament - ticket winners (use range like "10-15")</h2>
+            <Input v-model="tournament!.ticket_winners"/>
+            <h2>Tournament - invite winners (use range like "10-15")</h2>
+            <Input v-model="tournament!.invite_winners"/>
+            <h2>Game - ticket winners (use range like "10-15")</h2>
+            <Input v-model="tournament!.per_game_ticket_winners"/>
+            <h2>Game - invite winners (use range like "10-15")</h2>
+            <Input v-model="tournament!.per_game_invite_winners"/>
        </div>
        <GameAccordion :games="tournament!.games" />
     </div>

@@ -52,8 +52,10 @@ export const loadTournaments = (yaml: string): TournamentT[] => {
     let tournamentNew: TournamentT = {
       games: [],
       name: tournamentExt.name,
-      per_game_ticket_winners: tournamentExt.per_game_ticket_winners || 0,
-      ticket_winners: tournamentExt.ticket_winners || 0,
+      per_game_ticket_winners: tournamentExt.per_game_ticket_winners || '1-10',
+      ticket_winners: tournamentExt.ticket_winners || '1-10',
+      per_game_invite_winners: tournamentExt.per_game_invite_winners || '1-10',
+      invite_winners: tournamentExt.invite_winners || '1-10',
       prizes: tournamentExt.prizes || [0,0,0,0,0,0,0,0,0,0]
     };
     let games = tournamentExt.games.map((gameExt: any) => {
