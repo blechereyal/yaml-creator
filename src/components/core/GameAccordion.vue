@@ -10,7 +10,7 @@
           <Disclosure as="div" v-for="(game, idx) in props.games" class="pt-6" v-slot="{ open }">
             <dt>
               <DisclosureButton class="flex w-full items-start justify-between text-left text-gray-900">
-                <span class="text-base font-semibold leading-7">Game #{{ idx }} - {{ game.name }} - <AppBtn label="Delete game" @click.stop="deleteGame(idx)"/> - <AppBtn label="Move Up" @click.stop="moveUp(idx)"/> - <AppBtn label="Move Down" @click.stop="moveDown(idx)"/></span>
+                <span class="text-base font-semibold leading-7">Game #{{ idx }} - {{ game.name }} - <AppBtn label="Delete game" @click.stop="deleteGame(idx)"/> - <AppBtn label="Move Up" @click.stop="moveUp(idx)"/> - <AppBtn label="Move Down" @click.stop="moveDown(idx)"/> - <AppBtn label="Duplicate Game" @click.stop="duplicateGame(idx)"/></span>
                 <span class="ml-6 flex h-7 items-center">
                   <PlusSmallIcon v-if="!open" class="h-6 w-6" aria-hidden="true" />
                   <MinusSmallIcon v-else class="h-6 w-6" aria-hidden="true" />
@@ -39,6 +39,11 @@ const props = defineProps<{
 
 const deleteGame = (idx: number) => {
   props.games.splice(idx, 1);
+}
+
+const duplicateGame = (idx: number) => {
+  const toDuplicate = JSON.parse(JSON.stringify(props.games[idx]));
+  props.games.push(toDuplicate);
 }
 
 
