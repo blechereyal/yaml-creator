@@ -17,7 +17,7 @@ import Select from './Select.vue';
 import Input from './Input.vue';
 import GameRound from './GameRound.vue';
 import AppBtn from './core/AppBtn.vue';
-import { defineModel } from 'vue';
+import { defineModel, ref } from 'vue';
 import { playVariants, GameT, newParams, GameRoundT } from '../services/structure';
 
 const game = defineModel<GameT>();

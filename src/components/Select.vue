@@ -1,5 +1,5 @@
 <template>
-  <Listbox as="div" v-model="selected">
+  <Listbox as="div" v-model="selected" @update:model-value="(event) => emit('update', event)">
     <ListboxLabel class="block text-sm font-medium leading-6 text-gray-900">{{ props.label }}</ListboxLabel>
     <div class="relative mt-2">
       <ListboxButton
@@ -44,7 +44,12 @@ type Option = {
 
 const props = defineProps<{
   options: Option[],
-  label: string
+  label: string,
+}>();
+
+
+const emit = defineEmits<{
+  update: [event: any]
 }>();
 
 

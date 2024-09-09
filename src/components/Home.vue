@@ -6,17 +6,17 @@
     <input ref="fileUpload" class="hidden" 
            type="file" @change="upload">
   </div>
-  <Tournaments :tournaments="tournaments" />
+  <Tournaments/>
 </template>
 
 <script setup lang="ts">
-import { TournamentT } from '../services/structure';
 import { dumpTournaments, loadTournaments } from '../services/yamler';
 import AppBtn from './core/AppBtn.vue';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import Tournaments from './Tournaments.vue';
+import { useTournamentsStore } from '../store';
 
-
+const store = useTournamentsStore();
 
 const fileUpload = ref<HTMLInputElement | null>(null);
 const uploadTrigger = () => {
@@ -24,30 +24,21 @@ const uploadTrigger = () => {
       fileUpload.value.click();
     }
 }
-
-const tournaments = ref<TournamentT[]>(JSON.parse(localStorage.getItem('tournaments') || '[]') || []);
+store.persistTournaments(JSON.parse(localStorage.getItem('tournaments') || '[]') || []);
 const addTournament = () => {
-  tournaments.value.push({
-    name: `New Tournament ${tournaments.value.length + 1}`,
-    games: [],
-    prizes: [0,0,0,0,0,0,0,0,0,0],
-    ticket_winners: '1-10',
-    per_game_ticket_winners: '1-15',
-    invite_winners: '1-10',
-    per_game_invite_winners: '1-15'
-  })
+  store.addTournament();
 }
 let interval : number;
 onMounted(() => {
   interval = setInterval(() => {
     console.info("Saving data...");
-    localStorage.setItem('tournaments', JSON.stringify(tournaments.value));
+    localStorage.setItem('tournaments', JSON.stringify(store.tournaments));
   }, 2000)
 })
 
 onBeforeUnmount(() => {
   console.info("Clearing autosave loop");
-  localStorage.setItem('tournaments', JSON.stringify(tournaments.value));
+  localStorage.setItem('tournaments', JSON.stringify(store.tournaments));
   clearInterval(interval);
 })
 
@@ -56,9 +47,9 @@ const upload = (ev: Event) => {
   let reader = new FileReader();
   reader.onload = () => {
     if (reader.result !== null) {
-      tournaments.value = loadTournaments(reader.result as string);
+      store.persistTournaments(loadTournaments(reader.result as string));
     }
-    localStorage.setItem('tournaments', JSON.stringify(tournaments.value));
+    localStorage.setItem('tournaments', JSON.stringify(store.tournaments));
   };
 
   if (files && files[0]) {
@@ -67,8 +58,8 @@ const upload = (ev: Event) => {
 };
 
 const dumpAll = () => {
-  localStorage.setItem('tournaments', JSON.stringify(tournaments.value));
-  let yml = dumpTournaments(tournaments.value);
+  localStorage.setItem('tournaments', JSON.stringify(store.tournaments));
+  let yml = dumpTournaments(store.tournaments);
 
   // Create element with <a> tag
   const link = document.createElement("a");
