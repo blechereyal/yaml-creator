@@ -26,7 +26,7 @@
               </DisclosureButton>
             </dt>
             <DisclosurePanel as="dd" class="mt-2 pr-12">
-              <Game :idx="idx" />
+              <Game v-model="games[idx]" />
             </DisclosurePanel>
           </Disclosure>
         </dl>
