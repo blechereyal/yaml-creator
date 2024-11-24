@@ -23,6 +23,8 @@
       <Input v-model="tournament!.per_game_ticket_winners" />
       <h2>Game - invite winners (use range like "10-15")</h2>
       <Input v-model="tournament!.per_game_invite_winners" />
+      <h2>Sprint (1 .. n)</h2>
+      <Input :type="'number'" v-model="tournament!.sprint" />
     </div>
     <GameAccordion :idx="idx" />
   </div>

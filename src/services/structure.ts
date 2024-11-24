@@ -75,7 +75,8 @@ export type TournamentT = {
     games: GameT[],
     start_date?: Date,
     name: string,
-    prizes: Number[]
+    prizes: Number[],
+    sprint: Number
 }
 
 
