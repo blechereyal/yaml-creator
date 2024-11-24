@@ -21,7 +21,8 @@ export const useTournamentsStore = defineStore('tournaments', () => {
         ticket_winners: '1-10',
         per_game_ticket_winners: '1-15',
         invite_winners: '1-10',
-        per_game_invite_winners: '1-15'
+        per_game_invite_winners: '1-15',
+        sprint: 1
     })
     }
 
