@@ -42,7 +42,7 @@ const moveDown = (idx: number) => {
     return;
   }
 
-  let tmp = game.value!.gameRounds![idx];
+  let tmp = JSON.parse(JSON.stringify(game.value!.gameRounds![idx]));
   game.value!.gameRounds![idx] = game.value!.gameRounds![idx + 1];
   game.value!.gameRounds![idx + 1] = tmp;
 }
@@ -52,7 +52,7 @@ const moveUp = (idx: number) => {
     return;
   }
 
-  let tmp = game.value!.gameRounds![idx];
+  let tmp = JSON.parse(JSON.stringify(game.value!.gameRounds![idx]));
   game.value!.gameRounds![idx] = game.value!.gameRounds![idx - 1];
   game.value!.gameRounds![idx - 1] = tmp;
 }

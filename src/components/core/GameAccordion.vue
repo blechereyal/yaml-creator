@@ -76,7 +76,7 @@ const moveDown = (idx: number) => {
     return ;
   }
 
-  let tmp = games[idx];
+  let tmp = JSON.parse(JSON.stringify(games[idx]));
   games[idx] = games[idx + 1];
   games[idx + 1] = tmp;
 }
@@ -86,7 +86,8 @@ const moveUp = (idx: number) => {
     return ;
   }
 
-  let tmp = games[idx];
+  let tmp = JSON.parse(JSON.stringify(games[idx]));
+
   games[idx] = games[idx - 1];
   games[idx - 1] = tmp;
 }
